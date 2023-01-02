@@ -9,4 +9,4 @@
 * [Импортировать](https://ru.tradingview.com/support/solutions/43000487233/) инструменты из файла result.txt.
 
 ## .NET Runtime
-Для работы утилиты нужен [.NET Runtime](), обычно он уже установлен в Windows.
+Для работы утилиты нужен [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet), обычно он уже установлен в Windows.

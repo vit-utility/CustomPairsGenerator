@@ -23,10 +23,26 @@ namespace CustomPairsGenerator
                 return;
             }
 
-            var result = new List<string>();
+            var result = new List<List<string>>();
+            var current = new List<string>();
+            result.Add(current);
+
+            var count = 0;
 
             for (int i = 0; i < data.Length; i++)
             {
+                if (count + data.Length >= 1000)
+                {
+                    current = new List<string>();
+                    result.Add(current);
+
+                    count = 0;
+                }
+
+                var s = data[i].IndexOf(":");
+
+                current.Add($"###{data[i].Substring(s + 1)}");
+
                 for (int j = 0; j < data.Length; j++)
                 {
                     if (j == i)
@@ -34,11 +50,18 @@ namespace CustomPairsGenerator
                         continue;
                     }
 
-                    result.Add($"{data[i]}/{data[j]}");
+                    current.Add($"{data[i]}/{data[j]}");
                 }
+
+                count += data.Length;
             }
 
-            File.WriteAllLines("result.txt", result);
+            count = 1;
+            foreach (var item in result)
+            {
+                File.WriteAllLines($"result_{count}.txt", item);
+                ++count;
+            }            
         }
     }
 }

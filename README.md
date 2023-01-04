@@ -1,6 +1,7 @@
 # CustomPairsGenerator
 
 Утилита генерирует список пользовательских пар инструментов для TradingView.
+Утилита предоставляется как есть, автор не дает никаких гарантий и не несет никакой ответственности.
 
 ## Как использовать
 * [Скачать](https://github.com/vit-utility/CustomPairsGenerator/releases/tag/v1.0.0) и распаковать архив CustomPairsGenerator.

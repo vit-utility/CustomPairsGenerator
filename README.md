@@ -4,7 +4,7 @@
 Утилита предоставляется как есть, автор не дает никаких гарантий и не несет никакой ответственности.
 
 ## Как использовать
-* [Скачать](https://github.com/vit-utility/CustomPairsGenerator/releases/tag/v1.0.0) и распаковать архив CustomPairsGenerator.
+* [Скачать](https://github.com/vit-utility/CustomPairsGenerator/releases/tag/v1.0.1) и распаковать архив CustomPairsGenerator.
 * В файле source.txt указать нужные инструменты в формате биржа : пара инструментов, например BINANCE:ATOMUSDT.
 * Запустить CustomPairsGenerator.exe, результат будет в файле result.txt.
 * [Импортировать](https://ru.tradingview.com/support/solutions/43000487233/) инструменты из файла result.txt.

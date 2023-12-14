@@ -8,11 +8,25 @@ namespace CustomPairsGenerator
     {
         static void Main(string[] args)
         {
-            string[] data = null;
+            List<Row> rows = new List<Row>();
 
             try
             {
-                data = File.ReadAllLines("source.txt");
+                var data = File.ReadAllLines("source.txt");
+
+                foreach (var item in data)
+                {
+                    if (item.StartsWith("*"))
+                    {
+                        var r = new Row { IgnoreInSecondPos = true, Data = item.Substring(1) };
+                        rows.Add(r);
+                    }
+                    else
+                    {
+                        var r = new Row { Data = item };
+                        rows.Add(r);
+                    }
+                }
             }
             catch
             {
@@ -29,9 +43,9 @@ namespace CustomPairsGenerator
 
             var count = 0;
 
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < rows.Count; i++)
             {
-                if (count + data.Length >= 1000)
+                if (count + rows.Count >= 1000)
                 {
                     current = new List<string>();
                     result.Add(current);
@@ -39,21 +53,20 @@ namespace CustomPairsGenerator
                     count = 0;
                 }
 
-                var s = data[i].IndexOf(":");
+                var s = rows[i].Data.IndexOf(":");
 
-                current.Add($"###{data[i].Substring(s + 1)}");
+                current.Add($"###{rows[i].Data.Substring(s + 1)}");
 
-                for (int j = 0; j < data.Length; j++)
+                for (int j = 0; j < rows.Count; j++)
                 {
-                    if (j == i)
+                    if (j == i || rows[j].IgnoreInSecondPos)
                     {
                         continue;
                     }
 
-                    current.Add($"{data[i]}/{data[j]}");
-                }
-
-                count += data.Length;
+                    current.Add($"{rows[i].Data}/{rows[j].Data}");
+                    ++count;
+                }                
             }
 
             count = 1;
@@ -61,7 +74,14 @@ namespace CustomPairsGenerator
             {
                 File.WriteAllLines($"result_{count}.txt", item);
                 ++count;
-            }            
+            }
         }
+    }
+
+    public class Row
+    {
+        public string Data { get; set; }
+
+        public bool IgnoreInSecondPos { get; set; }
     }
 }
